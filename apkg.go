@@ -8,12 +8,12 @@ import (
 	//"strings"
 )
 
-type akgInfo struct {
+type pkgInfo struct {
 	path string
 	db *sql.DB
 }
 
-func Create(path string) (*akgInfo){
+func Create(path string) (*pkgInfo){
 	err := os.Mkdir(path, 0777);
 	if err != nil {
 		log.Fatal(err);
@@ -24,7 +24,7 @@ func Create(path string) (*akgInfo){
 		log.Fatal(err);
 	}
 
-	var pkg = new(akgInfo);
+	var pkg = new(pkgInfo);
 
 	tx, err := db.Begin();
 	if err != nil {
@@ -130,6 +130,6 @@ func Create(path string) (*akgInfo){
 	return pkg;
 }
 
-func (pkg *akgInfo) Close() {
-	pkg.db.Close();
+func (this pkgInfo) Close() {
+	this.db.Close();
 }
